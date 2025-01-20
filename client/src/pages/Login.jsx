@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 const Login = () => {
   const [state, setState] = useState("Sign Up Now");
@@ -9,6 +10,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
+
+  const { backendUrl, setIsLoggedin } = useContext(AppContext);
+
   return (
     <div className="flex items-center justify-center min-h-screen px-6 sm:px-0 bg-gradient-to-br from-blue-200 via-rose-200 to-purple-400">
       <img
@@ -108,12 +112,8 @@ const Login = () => {
         <div className="text-center mt-2">
           <button className="bg-slate-700 rounded-md inline-flex p-3 my-3 gap-2  ">
             <img src={assets.google_icon} alt="" className=" w-5" /> Continue
-            with <span className="font-semibold">Google</span>
+            with<span className="font-semibold">Google</span>
           </button>
-
-          {/* <button className="bg-slate-700 rounded-md p-3 my-3  ">
-            Continue with <span className="font-semibold">Google</span>
-          </button> */}
         </div>
       </div>
     </div>
