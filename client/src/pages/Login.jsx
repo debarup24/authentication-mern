@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
+import axios from "axios";
 
 const Login = () => {
   const [state, setState] = useState("Sign Up Now");
@@ -12,6 +13,24 @@ const Login = () => {
   const navigate = useNavigate();
 
   const { backendUrl, setIsLoggedin } = useContext(AppContext);
+
+  const onSubmitHandler = async (e) => {
+    try {
+      e.preventDefault();
+
+      // send cookies also
+      axios.defaults.withCredentials = true;
+
+      if (state === "Sign Up Now") {
+        const { data } = await axios.post(backendUrl + "/api/auth/register", {
+          name,
+          email,
+          password,
+        });
+      } else {
+      }
+    } catch (error) {}
+  };
 
   return (
     <div className="flex items-center justify-center min-h-screen px-6 sm:px-0 bg-gradient-to-br from-blue-200 via-rose-200 to-purple-400">
@@ -33,7 +52,7 @@ const Login = () => {
             : "Login to your account!"}
         </p>
 
-        <form>
+        <form onSubmit={onSubmitHandler}>
           {state === "Sign Up Now" && (
             <div className="mb-4 flex items-center gap-3 w-full px-5 py-2.5 rounded-full bg-[#333A5C]">
               <img src={assets.person_icon} alt="" />
