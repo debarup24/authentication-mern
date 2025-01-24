@@ -8,6 +8,7 @@ import { AppContextProvider } from "./context/AppContext.jsx";
 createRoot(document.getElementById("root")).render(
   // JUST FOR COMMIT
   // JUST FOR COMMIT
+  // JUST FOR COMMIT
 
   <BrowserRouter>
     <AppContextProvider>
