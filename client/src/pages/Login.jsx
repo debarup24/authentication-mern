@@ -14,7 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   // get the backend Url from the context -
-  const { backendUrl, setIsLoggedin } = useContext(AppContext);
+  const { backendUrl, setIsLoggedin, getUserData } = useContext(AppContext);
 
   const onSubmitHandler = async (e) => {
     try {
@@ -34,6 +34,7 @@ const Login = () => {
 
         if (data.success) {
           setIsLoggedin(true);
+          getUserData();
           navigate("/");
         } else {
           //alert (data.message)
@@ -49,6 +50,7 @@ const Login = () => {
 
         if (data.success) {
           setIsLoggedin(true);
+          getUserData();
           navigate("/");
         } else {
           //alert (data.message)
@@ -56,7 +58,7 @@ const Login = () => {
         }
       }
     } catch (error) {
-      toast.error(data.message);
+      toast.error(error.message);
     }
   };
 
