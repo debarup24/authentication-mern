@@ -3,6 +3,7 @@ import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [state, setState] = useState("Sign Up Now");
@@ -12,24 +13,51 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  // get the backend Url from the context -
   const { backendUrl, setIsLoggedin } = useContext(AppContext);
 
   const onSubmitHandler = async (e) => {
     try {
       e.preventDefault();
 
-      // send cookies also
+      // with the '/auth/register' or '/auth/login' API we have to send cookies also, for that we have to make "withCredentials = true" for the api request :
+
       axios.defaults.withCredentials = true;
 
       if (state === "Sign Up Now") {
+        // if true then hit the /register API
         const { data } = await axios.post(backendUrl + "/api/auth/register", {
           name,
           email,
           password,
         });
-      } else {
+
+        if (data.success) {
+          setIsLoggedin(true);
+          navigate("/");
+        } else {
+          //alert (data.message)
+          toast.error(data.message);
+        }
       }
-    } catch (error) {}
+      // if state is not sign up then hit the /login API
+      else {
+        const { data } = await axios.post(backendUrl + "/api/auth/login", {
+          email,
+          password,
+        });
+
+        if (data.success) {
+          setIsLoggedin(true);
+          navigate("/");
+        } else {
+          //alert (data.message)
+          toast.error(data.message);
+        }
+      }
+    } catch (error) {
+      toast.error(data.message);
+    }
   };
 
   return (

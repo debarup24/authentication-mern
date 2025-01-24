@@ -41,13 +41,13 @@ export const register = async (req, res) => {
           to: email, // from req.body 
           subject: `Welcome ${name}`,
           text: `Hello ${name},
-          Welcome to my Authentication Website.
-          
-          My name is Debarup and I'm reaching out to you to say thanks for signing-up with us.
+          Welcome to TripifAI.
           
           Your account has been created with email id : ${email}
+
+          Plan your next trip seamlessly with TripifAI 
           
-          //Testing Email Notification` 
+          ` 
         }
 
         await transporter.sendMail(mailOptions) ;
