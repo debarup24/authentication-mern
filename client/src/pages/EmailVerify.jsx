@@ -15,7 +15,7 @@ const EmailVerify = () => {
 
       <form className="bg-slate-800 p-8 rounded-lg shadow-lg w-96 text-sm">
         <h1 className="text-white text-2xl font-semibold text-center mb-4">
-          Email Verification OTP
+          Email Verification OTP !
         </h1>
         <p className="text-center mb-6 text-indigo-300">
           Enter the six digit code sent to your email.
