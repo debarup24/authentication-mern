@@ -90,7 +90,7 @@ const Navbar = () => {
         {userData.isAccountVerified && (
           <div className="relative mt-4">
             {" "}
-            <MdVerified className="text-blue-600 size-6 ml-[-9px]" />{" "}
+            <MdVerified className="text-blue-600 size-5 ml-[-9px]" />{" "}
           </div>
         )}
       </div>

@@ -127,7 +127,7 @@ export const register = async (req, res) => {
          return res.json({success: false, message: "Account Already Verified!"})
       }
        // generate OTP 
-      const otp = String(Math.floor(1000000 + Math.random() * 900000)) ; 
+      const otp = String(Math.floor(100000 + Math.random() * 900000)) ; 
 
       user.verifyOtp = otp ;
       user.verifyOtpExpireAt = Date.now() + 24*60*60*1000 
@@ -226,7 +226,7 @@ export const register = async (req, res) => {
           
 
         // Now if user is available : generate a OTP, that otp will be saved in the database, and that otp will be send on email 
-        const otp = String(Math.floor(1000000 + Math.random() * 900000)) ; 
+        const otp = String(Math.floor(100000 + Math.random() * 900000)) ; 
 
         user.resetOtp = otp ;
         user.resetOtpExpireAt = Date.now() + 15*60*1000 

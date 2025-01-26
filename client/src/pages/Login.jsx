@@ -141,7 +141,7 @@ const Login = () => {
             Already have an account? &nbsp;{" "}
             <span
               onClick={() => setState("Login")}
-              className="text-blue-400 underline cursor-pointer"
+              className="text-blue-400 underline font-medium cursor-pointer text-base"
             >
               Login here
             </span>
