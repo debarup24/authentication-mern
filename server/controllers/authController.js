@@ -294,4 +294,6 @@ export const register = async (req, res) => {
           } catch (error) {
             return res.json({success: false, message: error.message}) ;
           }
-      }       
+      }    
+      
+      //User not authenticated.Login again 
