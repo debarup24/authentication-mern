@@ -47,7 +47,7 @@ export const AppContextProvider = (props) => {
   }, []);
 
   const value = {
-    //so that we can acess it in any other component
+    //here we will pass all variables and Func, so that we can acess it in any other component
     backendUrl,
     isLoggedin,
     setIsLoggedin,
