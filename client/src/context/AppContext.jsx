@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 export const AppContext = createContext();
 
 export const AppContextProvider = (props) => {
+   // here in AppContextProvider - we can declare any state variable or functions and we can access it in any component
+ 
   // for API hit, we have to send cookies also, for that we have to make "withCredentials = true" for the api request :
   axios.defaults.withCredentials = true;
 
@@ -45,7 +47,7 @@ export const AppContextProvider = (props) => {
   }, []);
 
   const value = {
-    //so that we can acess it in any other component
+    //here we will pass all variables and Func, so that we can acess it in any other component
     backendUrl,
     isLoggedin,
     setIsLoggedin,
