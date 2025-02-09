@@ -7,3 +7,5 @@ const connectDB = async () => {
 } ;
 
 export default connectDB ;
+
+// now, to store the user data on MongoDB database, we have to create the models

@@ -1,4 +1,4 @@
-// in this we will create different controller like : register , login , logout, password reset .. and uing the controller func we will create API end point 
+// in this we will create different controller func like : register , login , logout, password reset .. and uing the controller func we will create API end point 
 
 import bcrypt from "bcryptjs" ;
 import jwt from "jsonwebtoken" ;
@@ -18,7 +18,7 @@ export const register = async (req, res) => {
         
      //check existing email/user :
         const existingUser = await userModel.findOne({email}) 
-          if(existingUser) { return res.json({success: false, message: "Details Missing!"}) 
+          if(existingUser) { return res.json({success: false, message: "User already Exist!"}) 
         }
       const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -27,6 +27,8 @@ export const register = async (req, res) => {
 
     //JWT token :
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: "30d"});
+
+     // After generating this token we have to send this token to users in the response and in the response we will add the cookie!   
 
         res.cookie("token", token, {
             httpOnly: true,
@@ -82,6 +84,8 @@ export const register = async (req, res) => {
 
       // generate one token :
       const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: "30d"});
+
+      // After generating this token we have to send this token to users in the response and in the response we will add the cookie! 
 
       res.cookie("token", token, {
           httpOnly: true,
