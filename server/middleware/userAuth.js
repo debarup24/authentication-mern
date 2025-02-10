@@ -3,7 +3,7 @@
 import jwt from "jsonwebtoken" ; 
 
 const userAuth = async (req, res, next) => {
-    
+    // in next it will execute our controller function
     const {token} = req.cookies ; 
 
     if(!token) {
