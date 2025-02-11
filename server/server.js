@@ -11,7 +11,7 @@ const app = express() ;
 connectDB();
 const port = process.env.PORT || 4000
 
-const allowedOrigins = ["https://auth-mern-client-delta.vercel.app"]
+const allowedOrigins = [ "http://localhost:5173" , "https://auth-mern-client-delta.vercel.app"]
 
 app.use(express.json()) ;
 app.use (cookieParser()) ;
