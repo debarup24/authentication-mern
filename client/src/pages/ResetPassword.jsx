@@ -6,7 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const ResetPassword = () => {
-  const { backendUrl } = useContext(AppContext);
+  const { backendUrl, loading, setLoading } = useContext(AppContext);
 
   axios.defaults.withCredentials = true;
 
@@ -49,6 +49,7 @@ const ResetPassword = () => {
 
   const onSubmitEmailForm = async (e) => {
     e.preventDefault();
+    setLoading(false);
 
     try {
       const { data } = await axios.post(
@@ -58,7 +59,7 @@ const ResetPassword = () => {
 
       data.success ? toast.success(data.message) : toast.error(data.message);
 
-      data.success && setIsEmailSent(true);
+      data.success && setIsEmailSent(true) && setLoading(true);
     } catch (error) {
       toast.error(error.message);
     }

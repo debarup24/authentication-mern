@@ -16,7 +16,7 @@ export const register = async (req, res) => {
       try {
      // try to create user acc & store the data in the database
         
-     //check existing email/user :
+     //check existing email/user exist karte h ki nhi :
         const existingUser = await userModel.findOne({email}) 
           if(existingUser) { return res.json({success: false, message: "User already Exist!"}) 
         }

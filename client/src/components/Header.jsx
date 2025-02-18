@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { userData } = useContext(AppContext);
@@ -24,9 +25,16 @@ const Header = () => {
         Let's start with a quick product tour and we will have you up and
         running in no time!
       </p>
-      <button className=" w-44 h-9 rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-700 shadow-md shadow-rose-400 transition-all px-3 py-1">
-        Get Started
-      </button>
+      <div className="flex flex-row gap-3">
+        <button className=" w-44 h-9 rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-700 shadow-md shadow-rose-400 transition-all px-3 py-1">
+          Get Started
+        </button>
+        <Link to={"/ai-mail"}>
+          <button className=" w-44 h-9 rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-700 shadow-md shadow-rose-400 transition-all px-3 py-1">
+            AI Email
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };
