@@ -33,7 +33,7 @@ const AiMail = () => {
             />
           </div>
           <button className="p-2.5  text-white bg-gray-700 font-semibold rounded-lg cursor-pointer px-4">
-            Generate Email
+            Generate Email body
           </button>
           <div className=" flex-col my-4">
             <textarea
