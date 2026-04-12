@@ -46,3 +46,25 @@ app.use("/api/email", emailRouter);
 app.listen(port, () =>
   console.log(`Server sucessfully started on PORT : ${port}`),
 );
+
+app.listen(port, () =>
+  console.log(`Server sucessfully started on PORT : ${port}`),
+);
+
+// Basic Express-Server structure :
+// import express from "express";
+// import dotenv from "dotenv";
+
+// dotenv.config();
+
+// const port = process.env.PORT || 5000;
+
+// const app = express();
+
+// app.get("/", (req, res) => {
+//   res.send("Hi DEBARUP, Server is running Successfully! ");
+// });
+
+// app.listen(port, () => {
+//   console.log(`Server is running on port ${port}`);
+// });
