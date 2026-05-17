@@ -18,4 +18,8 @@ const userSchema = new mongoose.Schema({
    // using the above user schema create userModel
  const userModel = mongoose.models.user || mongoose.model("user" , userSchema) ; 
 
+ // mongoose.model("user" , userSchema) -> this line will try to create the user model again & again whenever the code runs, so add : mongoose.models.name || mongoose.model("name" , Schema)
+
+ // mongoose.models.name : this will search the user model with the name: 'user' & if not found then it will create a model with name 'user', -> mongoose.model("user" , userSchema) using the userSchema.
+
  export default userModel ;
