@@ -47,10 +47,6 @@ app.listen(port, () =>
   console.log(`Server sucessfully started on PORT : ${port}`),
 );
 
-app.listen(port, () =>
-  console.log(`Server sucessfully started on PORT : ${port}`),
-);
-
 // Basic Express-Server structure :
 // import express from "express";
 // import dotenv from "dotenv";
