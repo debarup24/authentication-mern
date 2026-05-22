@@ -10,6 +10,21 @@ import transporter from "../config/nodemailer.js";
 export const register = async (req, res) => {
      const {name , email, password} = req.body ;
 
+     // req.body --> 
+
+     // suppose user fills this form : 
+
+    // Name: Deba
+    // Email: deba@gmail.com
+    // Password: 123456
+
+    // When user clicks Register, frontend may send: 
+//       {
+     //   "name": "Deba",
+     //   "email": "deba@gmail.com",
+     //   "password": "123456"
+// }   --> This JSON reaches backend inside: req.body 
+
      if(!name || !email || !password ) {
         return res.json({success: false, message: "Details Missing!"})
      } 
@@ -22,20 +37,26 @@ export const register = async (req, res) => {
         }
       const hashedPassword = await bcrypt.hash(password, 10);
 
-         const user = new userModel({name, email, password: hashedPassword}) ;
+         const user = new userModel({name, email, password: hashedPassword}) ; // create user 
          await user.save() ; // save user in database 
+
+      // Now generate a token for authentication and send the Token to browser using cookies    
 
     //JWT token :
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: "30d"});
 
      // After generating this token we have to send this token to users in the response and in the response we will add the cookie!   
 
-        res.cookie("token", token, {
+        res.cookie("token", token, {  // This tells browser: “Store this token in a cookie named token.”
             httpOnly: true,
             secure: process.env.NODE_ENV === "production" ,
             sameSite: process.env.NODE_ENV === "production" ? "none" : "strict" ,
             maxAge: 30*24*60*60*1000 , 
         }) ; 
+
+      // httpOnly: true : By default, cookies can be read by JavaScript running in the browser using document.cookie -  This is a huge security risk. If a hacker successfully executes a Malicious Script (XSS attack) on your website, they could steal your user's authentication token in milliseconds. Setting httpOnly: true - means JavaScript cannot touch this cookie. 
+      
+      // The "secure:" flag tells the browser to only send this cookie over encrypted (HTTPS) connections. If someone tries to access your site over unencrypted http://, the browser will refuse to send the cookie, preventing hackers from intercepting it over public Wi-Fi. Except on development mode - if the environment is production, make it true (super secure). If we are just testing on my laptop/localhost (HTTP), make it false so it works locally.
           
         // Sending welcome Email : 
         const mailOptions = {
