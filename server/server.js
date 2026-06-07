@@ -38,7 +38,7 @@ app.use(cookieParser());
 app.use(cors({ origin: allowedOrigins, credentials: true })); // here credentials: true mean it tells the browser: It’s allowed to send credentials like cookies, JWT Token.. with cross-origin requests. By default, browsers block credentials in cross-origin requests
 
 // API Endpoints
-app.get("/", (req, res) => res.send("Hello Ji.. API Working fine"));
+app.get("/", (req, res) => res.send("Hi there.. API Working fine"));
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/email", emailRouter);
